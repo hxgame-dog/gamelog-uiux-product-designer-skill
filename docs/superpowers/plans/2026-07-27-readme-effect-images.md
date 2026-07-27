@@ -129,7 +129,7 @@ git diff --check
 
 Expected: no credential pattern matches and no temporary render document is tracked. Manually confirm that changed text and images use only fictional products and data.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add README.md docs/images docs/superpowers/plans/2026-07-27-readme-effect-images.md
