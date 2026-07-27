@@ -136,7 +136,7 @@ git add README.md docs/images docs/superpowers/plans/2026-07-27-readme-effect-im
 git commit -m "docs: add uiux showcase images"
 ```
 
-- [ ] **Step 4: Push and verify**
+- [x] **Step 4: Push and verify**
 
 ```bash
 git push origin main
