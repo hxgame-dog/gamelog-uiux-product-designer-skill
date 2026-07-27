@@ -1,0 +1,4 @@
+interface:
+  display_name: "UI/UX Product Designer"
+  short_description: "面向中文 Web 产品与数据后台的 UI/UX 设计、实现与验收"
+  default_prompt: "Use $uiux-product-designer to audit and improve this product workflow from information architecture through frontend verification."
