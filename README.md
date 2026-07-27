@@ -46,30 +46,99 @@
 - 不把演示数据伪装成真实数据
 - 不复制具体项目、品牌、账号、密钥或私有业务数据
 
-## 安装
+## 安装到 Codex
 
-### 方式一：复制安装
+Skill 需要安装到 Codex 的个人技能目录。默认位置是 `~/.codex/skills/`；如果设置了 `CODEX_HOME`，则安装到 `$CODEX_HOME/skills/`。
+
+### macOS / Linux：复制安装
+
+1. 下载仓库：
 
 ```bash
 git clone https://github.com/hxgame-dog/gamelog-uiux-product-designer-skill.git
-mkdir -p ~/.codex/skills
-cp -R gamelog-uiux-product-designer-skill/uiux-product-designer ~/.codex/skills/
 ```
 
-重新打开 Codex 会话后，即可通过 `$uiux-product-designer` 显式调用。
+2. 创建 Codex Skills 目录并复制 Skill：
 
-### 方式二：符号链接
+```bash
+export CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
+mkdir -p "$CODEX_HOME/skills"
+cp -R gamelog-uiux-product-designer-skill/uiux-product-designer \
+  "$CODEX_HOME/skills/"
+```
 
-适合需要拉取仓库更新或参与开发的用户：
+3. 验证安装文件：
+
+```bash
+test -f "$CODEX_HOME/skills/uiux-product-designer/SKILL.md" \
+  && echo "uiux-product-designer installed"
+```
+
+4. 完全关闭并重新打开 Codex 会话，让技能列表重新加载。
+
+### macOS / Linux：符号链接安装
+
+适合需要通过 `git pull` 持续获取更新或参与开发的用户：
 
 ```bash
 git clone https://github.com/hxgame-dog/gamelog-uiux-product-designer-skill.git
-mkdir -p ~/.codex/skills
+export CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
+mkdir -p "$CODEX_HOME/skills"
 ln -s "$(pwd)/gamelog-uiux-product-designer-skill/uiux-product-designer" \
-  ~/.codex/skills/uiux-product-designer
+  "$CODEX_HOME/skills/uiux-product-designer"
 ```
 
-如果目标目录已存在，请先备份已有版本，不要直接覆盖个人修改。
+使用符号链接后，在仓库中运行 `git pull` 即可让已安装 Skill 使用最新内容。更新后建议重新打开 Codex 会话。
+
+### Windows PowerShell：复制安装
+
+```powershell
+git clone https://github.com/hxgame-dog/gamelog-uiux-product-designer-skill.git
+
+$CodexHome = if ($env:CODEX_HOME) {
+  $env:CODEX_HOME
+} else {
+  Join-Path $HOME ".codex"
+}
+
+New-Item -ItemType Directory -Force -Path (Join-Path $CodexHome "skills")
+Copy-Item -Recurse `
+  "gamelog-uiux-product-designer-skill\uiux-product-designer" `
+  (Join-Path $CodexHome "skills")
+
+Test-Path (Join-Path $CodexHome "skills\uiux-product-designer\SKILL.md")
+```
+
+命令返回 `True` 后，完全关闭并重新打开 Codex。
+
+### 在已有项目中启用
+
+安装完成后，Skill 不需要复制到每个业务项目。它属于当前用户的 Codex 全局技能，可以在不同项目中复用。
+
+1. 在 Codex App 中打开目标项目文件夹，或在终端进入项目后启动 Codex：
+
+```bash
+cd /path/to/existing-project
+codex
+```
+
+2. 在新会话中显式调用：
+
+```text
+$uiux-product-designer
+请对当前已有项目进行只读 UI/UX 审计，先不要修改代码。
+```
+
+3. 如果 `$uiux-product-designer` 没有出现在技能建议中，检查：
+
+```bash
+export CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
+ls "$CODEX_HOME/skills/uiux-product-designer/SKILL.md"
+```
+
+确认路径正确后重新打开 Codex。安装目录必须直接包含 `SKILL.md`，不要出现 `uiux-product-designer/uiux-product-designer/SKILL.md` 的重复嵌套。
+
+如果目标目录已经存在，请先备份个人修改。复制安装不会自动同步 GitHub 更新；需要频繁更新时优先使用符号链接。
 
 ## 使用示例
 
@@ -347,11 +416,14 @@ This Codex Skill audits, designs, implements, and validates practical UI/UX for 
 
 ```bash
 git clone https://github.com/hxgame-dog/gamelog-uiux-product-designer-skill.git
-mkdir -p ~/.codex/skills
-cp -R gamelog-uiux-product-designer-skill/uiux-product-designer ~/.codex/skills/
+export CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
+mkdir -p "$CODEX_HOME/skills"
+cp -R gamelog-uiux-product-designer-skill/uiux-product-designer \
+  "$CODEX_HOME/skills/"
+test -f "$CODEX_HOME/skills/uiux-product-designer/SKILL.md"
 ```
 
-Invoke it explicitly:
+Restart Codex after installation. Open the target repository as the current workspace, then invoke the Skill explicitly:
 
 ```text
 $uiux-product-designer Audit this dashboard for information architecture,
