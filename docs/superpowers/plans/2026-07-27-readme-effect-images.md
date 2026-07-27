@@ -15,23 +15,23 @@
 **Files:**
 - Create temporarily: `/tmp/gamelog-uiux-readme-showcase.html`
 
-- [ ] **Step 1: Create one fixed-size render document**
+- [x] **Step 1: Create one fixed-size render document**
 
 Implement a `1600×900` canvas selected by `?scene=audit`, `?scene=dashboard`, or `?scene=responsive`. Define shared CSS variables for neutral surfaces, borders, type, blue actions, teal analytics, and semantic states. Use only system fonts, HTML, CSS, and inline SVG.
 
-- [ ] **Step 2: Implement the audit scene**
+- [x] **Step 2: Implement the audit scene**
 
 Render a repository audit header, four category scores, a severity summary, an evidence-backed findings table, and one selected-finding detail panel. Use generic paths such as `src/components/Filters.tsx`.
 
-- [ ] **Step 3: Implement the dashboard scene**
+- [x] **Step 3: Implement the dashboard scene**
 
 Render project context, freshness, four global filters, five KPI cells, a trend chart, diagnostics, and a date-and-region table. Use fictional values and generic source labels.
 
-- [ ] **Step 4: Implement the responsive scene**
+- [x] **Step 4: Implement the responsive scene**
 
 Render desktop, tablet, and mobile frames together with a validation checklist. Demonstrate structural adaptation rather than proportional shrinking.
 
-- [ ] **Step 5: Open each scene in Chromium**
+- [x] **Step 5: Open each scene in Chromium**
 
 Run:
 
@@ -51,11 +51,11 @@ Expected: Chromium renders a nonblank `1600×900` preview without console-visibl
 - Create: `docs/images/dashboard-optimization.png`
 - Create: `docs/images/responsive-validation.png`
 
-- [ ] **Step 1: Render all three assets**
+- [x] **Step 1: Render all three assets**
 
 Run Playwright screenshot commands for the three query-selected scenes and write directly to the three target paths.
 
-- [ ] **Step 2: Verify dimensions**
+- [x] **Step 2: Verify dimensions**
 
 Run:
 
@@ -65,7 +65,7 @@ python3 -c 'from PIL import Image; import pathlib; [print(p.name, Image.open(p).
 
 Expected: every output reports `(1600, 900)`. If Pillow is unavailable, use macOS `sips -g pixelWidth -g pixelHeight`.
 
-- [ ] **Step 3: Inspect every image at original resolution**
+- [x] **Step 3: Inspect every image at original resolution**
 
 Use the image inspection tool and check text fit, overlap, blank charts, consistent colors, and fictional content. Correct the render document and rerender any failed scene.
 
@@ -74,11 +74,11 @@ Use the image inspection tool and check text fit, overlap, blank charts, consist
 **Files:**
 - Modify: `README.md`
 
-- [ ] **Step 1: Add the showcase section**
+- [x] **Step 1: Add the showcase section**
 
 Insert an "效果示例" section after the repository introduction. Explain that all interfaces and values are fictional.
 
-- [ ] **Step 2: Add the three images**
+- [x] **Step 2: Add the three images**
 
 Use relative Markdown paths:
 
@@ -90,7 +90,7 @@ Use relative Markdown paths:
 
 Add one concise caption below each image explaining the capability demonstrated.
 
-- [ ] **Step 3: Check README links**
+- [x] **Step 3: Check README links**
 
 Verify every referenced image exists and uses the exact case-sensitive path.
 
@@ -101,7 +101,7 @@ Verify every referenced image exists and uses the exact case-sensitive path.
 - Verify: `README.md`
 - Verify: `docs/images/*.png`
 
-- [ ] **Step 1: Validate the Skill**
+- [x] **Step 1: Validate the Skill**
 
 Run:
 
@@ -113,17 +113,17 @@ python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py \
 
 Expected: `Skill is valid!`
 
-- [ ] **Step 2: Scan privacy and repository hygiene**
+- [x] **Step 2: Scan privacy and repository hygiene**
 
 Run:
 
 ```bash
-rg -n -i 'Nicety|Nexus|Cooking Legacy|Puzzle Workshop|Screw Fun|Merge Bistro|hxgames@gmail' .
+rg -n -i "(api[_-]?key|secret|token|password|authorization)\s*[:=]\s*['\"][^'\"]{8,}" README.md docs uiux-product-designer
 git status --short
 git diff --check
 ```
 
-Expected: no private project matches and no temporary render document is tracked.
+Expected: no credential pattern matches and no temporary render document is tracked. Manually confirm that changed text and images use only fictional products and data.
 
 - [ ] **Step 3: Commit**
 
