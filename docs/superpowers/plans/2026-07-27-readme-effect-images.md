@@ -94,6 +94,10 @@ Add one concise caption below each image explaining the capability demonstrated.
 
 Verify every referenced image exists and uses the exact case-sensitive path.
 
+- [x] **Step 4: Document non-game project invocation**
+
+Explain that the Skill is domain-neutral and add reusable prompts for SaaS, CRM, commerce, finance, content, education, and approval workflows. Require callers to provide domain language, roles, critical workflows, permissions, compliance constraints, and protected business behavior.
+
 ### Task 4: Validate And Publish
 
 **Files:**

@@ -106,6 +106,72 @@ $uiux-product-designer
 判断它们是否支持真实分析决策，并实施已确认的优化。
 ```
 
+## 应用于非游戏项目
+
+仓库名称中的 `gamelog` 只是发布命名，`uiux-product-designer` Skill 本身不依赖游戏行业。它可以用于 SaaS、CRM/ERP、电商运营、财务与商业分析、内容管理、教育平台、客户支持和企业内部工具。
+
+在非游戏项目中调用时，应明确产品领域、目标用户和真实工作流，并要求 Skill 遵循当前行业语言。不要让它套用游戏行业的导航、指标或数据结构。
+
+### 通用非游戏项目审计
+
+```text
+$uiux-product-designer
+这是一个非游戏 Web 项目，请先进行只读 UI/UX 审计，不要修改代码。
+
+产品领域：<例如 CRM、财务管理、内容平台、教育后台>
+目标用户：<例如销售主管、财务人员、内容运营、教师>
+关键流程：<例如线索分配、账单核对、内容发布、课程排期>
+重点页面：<填写路由或页面>
+必须保留：<现有业务规则、权限与设计约束>
+
+请读取当前仓库的路由、组件、样式、文档和测试，检查信息架构、
+任务完成效率、表单与表格、状态反馈、响应式和可访问性。
+使用当前行业的术语与数据对象，不要套用游戏行业的模块或指标。
+按严重程度提供文件证据、用户影响和分阶段优化方案。
+```
+
+### SaaS、CRM 或企业工作台
+
+```text
+$uiux-product-designer
+请优化当前 SaaS 工作台的客户管理流程。
+
+重点检查客户列表、搜索筛选、批量操作、详情侧栏、权限状态和操作反馈。
+保留现有 API、字段与权限逻辑，优先复用当前设计系统和公共组件。
+先输出流程问题与实施顺序，确认后再修改，并完成桌面与移动端验收。
+```
+
+### 电商、财务或运营数据后台
+
+```text
+$uiux-product-designer
+请审查当前运营数据后台的可用性与数据可信度。
+
+重点检查日期与业务时区、筛选条件、KPI 口径、图表单位、表格维度、
+数据来源、更新时间、部分数据和导出状态。
+不要修改指标定义或财务口径；发现口径不明确时先列出风险并等待确认。
+```
+
+### 内容、教育或审批型系统
+
+```text
+$uiux-product-designer
+请优化当前内容发布与审核流程。
+
+检查草稿、提交、审核、驳回、重新编辑和发布后的完整状态，
+确保不同角色能理解当前进度、可执行操作和失败恢复方式。
+先保留现有业务行为完成 UX 审计，再实施已确认的界面优化。
+```
+
+无论行业是什么，都建议至少提供：
+
+- 产品领域与主要用户角色
+- 用户需要完成的关键任务
+- 核心业务对象和行业术语
+- 权限、审计、合规或数据口径限制
+- 已知问题、参考页面与目标视口
+- 允许修改和禁止修改的代码范围
+
 ## 优化已有项目
 
 针对已有项目，建议先在项目根目录启动 Codex，让 Skill 读取真实路由、组件、样式、产品文档和现有测试。不要只提供一张截图后直接要求重写页面。
@@ -300,6 +366,17 @@ Inspect its routes, components, styles, product documentation, states,
 responsive behavior, and accessibility. Rank findings by severity with
 file evidence, then propose an implementation and browser-validation plan.
 Preserve working business behavior and avoid unrelated refactors.
+```
+
+The Skill is not game-specific. For a non-game product, provide the domain, user roles, critical workflows, business objects, terminology, permissions, and compliance constraints. Explicitly ask it to preserve existing business rules and avoid game-specific navigation or metrics.
+
+```text
+$uiux-product-designer Audit this non-game SaaS project without modifying files.
+Domain: customer relationship management.
+Users: sales managers and account owners.
+Critical workflows: lead assignment, pipeline review, and account handoff.
+Preserve the current API, permissions, terminology, and business rules.
+Report evidence-backed findings and an implementation plan before editing.
 ```
 
 The bundled validator is advisory and must be followed by browser and accessibility verification.
