@@ -84,6 +84,79 @@ $uiux-product-designer
 判断它们是否支持真实分析决策，并实施已确认的优化。
 ```
 
+## 优化已有项目
+
+针对已有项目，建议先在项目根目录启动 Codex，让 Skill 读取真实路由、组件、样式、产品文档和现有测试。不要只提供一张截图后直接要求重写页面。
+
+推荐分三个阶段调用。
+
+### 1. 先进行只读审计
+
+```text
+$uiux-product-designer
+请对当前已有项目进行只读 UI/UX 审计，先不要修改代码。
+
+请读取项目的路由、页面组件、布局组件、全局样式、设计变量、
+产品文档和现有测试，并检查：
+1. 信息架构和关键用户流程
+2. 字体、间距、颜色和视觉层级
+3. 筛选器、表格、图表、表单、弹窗和导航
+4. loading、empty、error、permission 和操作反馈
+5. 1440×1024、1280×720、768×1024、390×844 的响应式风险
+6. 键盘操作、焦点、语义结构和对比度
+
+请按严重程度列出问题，提供文件或页面证据，并给出分阶段优化方案。
+保留当前可用业务流程，不做无关重构。
+```
+
+### 2. 确认范围后实施
+
+```text
+$uiux-product-designer
+确认实施上一轮审计中的高优先级问题。
+
+请遵循当前项目的技术栈、组件模式和设计变量，优先修改公共组件，
+不要改动业务口径、权限规则、真实数据和无关文件。
+补齐必要的加载、空、错误、禁用和成功状态，并为高风险改动添加测试。
+```
+
+### 3. 完成浏览器验收
+
+```text
+$uiux-product-designer
+请对本轮 UI/UX 修改进行完整验收。
+
+运行项目已有的 typecheck、lint、test 和 build，
+并使用浏览器检查核心流程以及桌面、平板、移动端视口。
+重点确认没有文字重叠、横向页面溢出、失效控件、隐藏的活动筛选条件、
+控制台错误和不可恢复的操作状态。最后列出验证结果和剩余风险。
+```
+
+如果需求范围已经明确，也可以一次性调用：
+
+```text
+$uiux-product-designer
+请优化当前已有项目的 UI/UX。先读取仓库并审计现状，再制定实施顺序，
+随后在不改变业务逻辑和数据口径的前提下完成高优先级修复。
+
+重点页面：<填写路由或页面>
+目标用户：<填写角色>
+主要问题：<填写已知问题>
+必须保留：<填写现有交互或设计约束>
+目标视口：1440×1024、1280×720、768×1024、390×844
+
+完成后运行项目检查，并通过浏览器截图、键盘操作和核心流程验证结果。
+```
+
+为了获得更准确的结果，调用时最好补充：
+
+- 需要优化的路由、页面或用户流程
+- 目标用户和权限角色
+- 已知问题、截图或参考设计
+- 必须保留的业务行为和设计约束
+- 允许修改的目录和禁止修改的范围
+- 需要支持的设备、浏览器和验收尺寸
+
 ## 工作方式
 
 Skill 会根据任务选择不同流程：
@@ -195,6 +268,16 @@ Invoke it explicitly:
 ```text
 $uiux-product-designer Audit this dashboard for information architecture,
 workflow completeness, readability, responsiveness, and accessibility.
+```
+
+For an existing project, run Codex from the repository root and start with a read-only audit:
+
+```text
+$uiux-product-designer Audit this existing project without modifying files.
+Inspect its routes, components, styles, product documentation, states,
+responsive behavior, and accessibility. Rank findings by severity with
+file evidence, then propose an implementation and browser-validation plan.
+Preserve working business behavior and avoid unrelated refactors.
 ```
 
 The bundled validator is advisory and must be followed by browser and accessibility verification.
